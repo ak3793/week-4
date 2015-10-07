@@ -101,6 +101,12 @@
 
 		var svg = d3.select(map.getPanes().overlayPane).append("svg");
 		var g = svg.append("g").attr("class", "leaflet-zoom-hide");
+		var lat1 = mapBounds["_southWest"]["lat"];
+		var lat2 = mapBounds["_northEast"]["lat"];
+		var lng1 = mapBounds["_southWest"]["lng"];
+		var lng2 = mapBounds["_northEast"]["lng"];
+
+		request = "/getData?lat1=" + lat1 + "&lat2=" + lat2 + "&lng1=" + lng1 + "&lng2=" + lng2
 
 		function projectPoint(lat, lng) {
 			return map.latLngToLayerPoint(new L.LatLng(lat, lng));
@@ -115,7 +121,8 @@
 		var path = d3.geo.path().projection(transform);
 
 		function updateData(){
-		  	d3.json("/getData/", function(data) {
+			var mapBounds = map.getBounds();
+		  	d3.json(request, function(data) {
 
 				//create placeholder circle geometry and bind it to data
 				var circles = g.selectAll("circle").data(data.features);
