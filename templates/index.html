@@ -35,11 +35,19 @@
 			position: absolute;
 			z-index: 10;
 		}
+		<div class="menu">
+    		<p><h4>DMC Web Stack</h4></p>
+    		<form>
+        		<p><input type="checkbox" id="heatmap">Heat Map</p>
+        		<p><input type="button" value="Update Data" onclick="updateData()"></p>
+   			 </form>
+		</div>
 
 		p.tooltip-text{
 			margin: 0px;
 			padding: 0px;
 		}
+
 		div.menu{
     		position: fixed;
     		margin: 0px;
@@ -163,6 +171,7 @@
 			// call function to 
 			update();
 			map.on("viewreset", update);
+		};
 
 		});
 		updateData();
